@@ -184,18 +184,110 @@
 // };
 
 // export default CreateEvent;
-import React, { useState } from "react";
+// import React, { useState } from "react";
+// import { Container, Form, Button } from "react-bootstrap";
+// import { useNavigate } from "react-router-dom";
+
+// const CreateEvent = () => {
+//   const [eventData, setEventData] = useState({
+//     title: "",
+//     date: "",
+//     location: "",
+//   });
+
+//   const navigate = useNavigate(); // For redirection
+
+//   const handleChange = (e) => {
+//     setEventData({ ...eventData, [e.target.name]: e.target.value });
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     try {
+//       const response = await fetch("http://127.0.0.1:8000/api/event/create/", {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${localStorage.getItem("access_token")}`, // Ensure token is included
+//         },
+//         body: JSON.stringify(eventData),
+//       });
+
+//       if (!response.ok) {
+//         throw new Error("Failed to create event");
+//       }
+
+//       const data = await response.json();
+//       console.log("Event Created Successfully:", data);
+
+//       // Redirect to dashboard after successful event creation
+//       navigate("/dashboard");
+//     } catch (error) {
+//       console.error("Error creating event:", error);
+//     }
+//   };
+
+//   return (
+//     <Container className="mt-4">
+//       <h2 className="text-center">Create Event</h2>
+//       <Form onSubmit={handleSubmit} className="shadow p-4 rounded bg-light">
+//         <Form.Group className="mb-3">
+//           <Form.Label>Title</Form.Label>
+//           <Form.Control type="text" name="title" placeholder="Enter event title" onChange={handleChange} required />
+//         </Form.Group>
+//         <Form.Group className="mb-3">
+//           <Form.Label>Date</Form.Label>
+//           <Form.Control type="date" name="date" onChange={handleChange} required />
+//         </Form.Group>
+//         <Form.Group className="mb-3">
+//           <Form.Label>Location</Form.Label>
+//           <Form.Control type="text" name="location" placeholder="Enter event location" onChange={handleChange} required />
+//         </Form.Group>
+//         <Button variant="primary" type="submit" className="w-100">Create Event</Button>
+//       </Form>
+//     </Container>
+//   );
+// };
+
+// export default CreateEvent;
+
+import React, { useState, useEffect } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const CreateEvent = () => {
   const [eventData, setEventData] = useState({
     title: "",
+    description: "",
     date: "",
     location: "",
+    hosted_by: "", // Admin user ID will be set dynamically
   });
 
-  const navigate = useNavigate(); // For redirection
+  const navigate = useNavigate();
+
+  // Fetch the current admin user ID
+  useEffect(() => {
+    const fetchAdminUser = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/current-user/", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        });
+
+        if (response.status === 200) {
+          setEventData((prevData) => ({ ...prevData, hosted_by: response.data.id }));
+        }
+      } catch (error) {
+        console.error("Error fetching admin user:", error);
+      }
+    };
+
+    fetchAdminUser();
+  }, []);
 
   const handleChange = (e) => {
     setEventData({ ...eventData, [e.target.name]: e.target.value });
@@ -205,24 +297,17 @@ const CreateEvent = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/event/create/", {
-        method: "POST",
+      const response = await axios.post("http://127.0.0.1:8000/api/event/create/", eventData, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`, // Ensure token is included
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
-        body: JSON.stringify(eventData),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to create event");
+      if (response.status === 201) {
+        console.log("Event Created Successfully:", response.data);
+        navigate("/dashboard");
       }
-
-      const data = await response.json();
-      console.log("Event Created Successfully:", data);
-
-      // Redirect to dashboard after successful event creation
-      navigate("/dashboard");
     } catch (error) {
       console.error("Error creating event:", error);
     }
@@ -235,6 +320,10 @@ const CreateEvent = () => {
         <Form.Group className="mb-3">
           <Form.Label>Title</Form.Label>
           <Form.Control type="text" name="title" placeholder="Enter event title" onChange={handleChange} required />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Description</Form.Label>
+          <Form.Control as="textarea" rows={3} name="description" placeholder="Enter event description" onChange={handleChange} required />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Date</Form.Label>

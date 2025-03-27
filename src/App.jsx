@@ -59,17 +59,19 @@ import CreateEvent from "./pages/create_event";
 import ManageEvent from "./pages/manage_event"
 import Navbar from "./components/header";
 import Footer from "./components/footer";
+import EventDetails from "./pages/event_details";
+import RSVPEvents from "./pages/rsvp-events";
 
 function App() {
   const { isAuthenticated, setIsAuthenticated } = useAuth(); // Use Auth Context
   const navigate = useNavigate();
 
   // Redirect to dashboard if authenticated
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/dashboard");
-    }
-  }, [isAuthenticated, navigate]);  
+  // useEffect(() => {
+  //   if (!isAuthenticated) {
+  //     navigate("/login");
+  //   }
+  // }, [isAuthenticated,navigate]);  
 
   return (
     <div className="d-flex flex-column min-vh-100">
@@ -84,7 +86,9 @@ function App() {
           {/* {isAuthenticated && <Route path="/dashboard" element={<Dashboard />} />} */}
           <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Home />} />
           <Route path="/add_event" element={<CreateEvent />} /> 
-          <Route path="/manage_event/:eventId" element={<ManageEvent />} />
+          <Route path="/manage_event/:event_id" element={<ManageEvent />} />
+          <Route path="/event_details/:eventId" element={<EventDetails />} />
+          <Route path="/RSVPed_Events" element={<RSVPEvents />} />
         </Routes>
       </div>
       <Footer />

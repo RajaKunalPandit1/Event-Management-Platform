@@ -6,8 +6,8 @@ const ResetPasswordConfirm = () => {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const navigate = useNavigate();
-    const { user_id, token } = useParams();
-    const userId = parseInt(user_id, 10);  // Get parameters from URL
+    const { userId, token } = useParams();
+    // const userId = parseInt(user_id, 10);  // Get parameters from URL
 
     const handleSubmit = async (e) => {
         e.preventDefault();

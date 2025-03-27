@@ -43,6 +43,7 @@ const Login = ({ setAuth }) => {
                 localStorage.setItem("refresh_token", refresh_token);
                 localStorage.setItem("username", username);
                 localStorage.setItem("role", role);
+                // localStorage.setItem("user", JSON.stringify({ id, username, role }));
     
                 setAuth(true);  // Update authentication state
                 navigate("/dashboard");  // Redirect to Dashboard

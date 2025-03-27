@@ -21,13 +21,16 @@ const Header = ({ isAuthenticated, setAuth }) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/">Home</Nav.Link>
             {isAuthenticated ? (
-              <Nav.Link onClick={handleLogout} style={{ cursor: "pointer", color: "red" }}>
-                LogOut
+              <>
+              <Nav.Link as={Link} to="/dashboard">Home</Nav.Link>
+              <Nav.Link onClick={handleLogout} style={{ cursor: "pointer"}}>
+                Logout
               </Nav.Link>
+              </>
             ) : (
               <>
+                <Nav.Link as={Link} to="/">Home</Nav.Link>
                 <Nav.Link as={Link} to="/register">Register</Nav.Link>
                 <Nav.Link as={Link} to="/login">Login</Nav.Link>
               </>

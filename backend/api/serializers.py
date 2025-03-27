@@ -30,6 +30,12 @@ class RegisterSerializer(serializers.ModelSerializer):
         validated_data["password"] = make_password(validated_data["password"])  # Hash password
         return User.objects.create(**validated_data)  # Unpacks and creates the user
 
+# Serializer for fetching current user details
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["id", "username", "email", "role"]
+
 # # Custom JWT Token Serializer
 # class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 #     def validate(self, attrs):
