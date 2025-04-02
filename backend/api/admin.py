@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from api.models import CustomUser, Event
+from api.models import CustomUser, Event, RSVP
 
 # Custom User Admin
 class CustomUserAdmin(UserAdmin):
@@ -10,7 +10,7 @@ class CustomUserAdmin(UserAdmin):
     list_filter = ('role', 'is_active')
 
     fieldsets = (
-        (None, {'fields': ('username', 'email', 'password')}),
+        (None, {'fields': ('username', 'email','password')}),
         ('Personal Info', {'fields': ('first_name', 'last_name', 'phone_number')}),
         ('Permissions', {'fields': ('role', 'is_active', 'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login',)}),
@@ -24,7 +24,6 @@ class CustomUserAdmin(UserAdmin):
     )
 
     ordering = ('email',)
-        # 🔴 Exclude date_joined from forms
     # exclude = ("date_joined",)
 
 # Event Admin
@@ -33,6 +32,51 @@ class EventAdmin(admin.ModelAdmin):
     search_fields = ('title', 'location')
     list_filter = ('date',)
 
+
 # Register models
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Event, EventAdmin)
+
+# from django.contrib import admin
+# from django.contrib.auth.admin import UserAdmin
+# from api.models import CustomUser, Event, RSVP
+
+# # Custom User Admin
+# class CustomUserAdmin(UserAdmin):
+#     model = CustomUser
+#     list_display = ('email', 'username', 'phone_number', 'role', 'is_active')
+#     search_fields = ('email', 'username', 'phone_number')
+#     list_filter = ('role', 'is_active')
+
+#     fieldsets = (
+#         (None, {'fields': ('username', 'email', 'password')}),
+#         ('Personal Info', {'fields': ('first_name', 'last_name', 'phone_number')}),
+#         ('Permissions', {'fields': ('role', 'is_active', 'groups', 'user_permissions')}),
+#         ('Important dates', {'fields': ('last_login',)}),
+#     )
+
+#     add_fieldsets = (
+#         (None, {
+#             'classes': ('wide',),
+#             'fields': ('email', 'username', 'phone_number', 'role', 'password1', 'password2'),
+#         }),
+#     )
+
+#     ordering = ('email',)
+
+# # Event Admin
+# class EventAdmin(admin.ModelAdmin):
+#     list_display = ('title', 'date', 'location')
+#     search_fields = ('title', 'location')
+#     list_filter = ('date',)
+
+# # RSVP Admin
+# class RSVPAdmin(admin.ModelAdmin):
+#     list_display = ('user', 'event', 'created_at')  # Fields to display in admin panel
+#     list_filter = ('event', 'user')  # Filters
+#     search_fields = ('user__email', 'event__title')  # Search functionality
+
+# # Register models
+# admin.site.register(CustomUser, CustomUserAdmin)
+# admin.site.register(Event, EventAdmin)
+# admin.site.register(RSVP, RSVPAdmin)  

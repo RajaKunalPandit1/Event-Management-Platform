@@ -1,3 +1,5 @@
+#allow users to select events using checkboxes.
+
 from django import forms
 from .models import CustomUser, Event
 

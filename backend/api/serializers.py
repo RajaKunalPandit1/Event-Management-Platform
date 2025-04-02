@@ -11,13 +11,13 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         data = super().validate(attrs)
         data["email"] = self.user.email  # Use email instead of username
         data["role"] = self.user.role  # Include user role
-        return data
+        return data # returns token with mail and role
 
 # User Registration Serializer
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["username", "email", "password"]  # Added 'role' field
+        fields = ["username", "email", "password"]   # Required Fields
         extra_kwargs = {"password": {"write_only": True}}
 
     def validate_email(self, value):
@@ -26,7 +26,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Email already in use")
         return value
 
-    def create(self, validated_data):
+    def create(self, validated_data): #overriding the create method
         validated_data["password"] = make_password(validated_data["password"])  # Hash password
         return User.objects.create(**validated_data)  # Unpacks and creates the user
 
@@ -34,7 +34,23 @@ class RegisterSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "email", "role"]
+        fields = ["id", "username", "email", "role"] 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # # Custom JWT Token Serializer
 # class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):

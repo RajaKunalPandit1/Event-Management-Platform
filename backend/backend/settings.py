@@ -171,6 +171,7 @@
 
 from pathlib import Path
 from datetime import timedelta
+import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -201,8 +202,13 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "rest_framework",
     "api",
-    "corsheaders"
+    "corsheaders",
 ]
+
+INSTALLED_APPS += ["django_apscheduler"]
+
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -216,6 +222,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "backend.urls"
+BASE_URL = "http://127.0.0.1:8000"
 
 TEMPLATES = [
     {
@@ -239,6 +246,8 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = True  # Temporarily allow all origins (for testing)
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Allow frontend
+    "http://localhost:3000",  # React frontend
+
 ]
 
 AUTH_USER_MODEL = 'api.CustomUser'
@@ -299,6 +308,26 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": "scheduler.log",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file"],
+            "level": "INFO",
+            "propagate": True,
+        },
+    },
+}
+
+
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
@@ -307,7 +336,7 @@ EMAIL_HOST_USER = "rajakunalpandit2@gmail.com"
 EMAIL_HOST_PASSWORD = "dvqvkqdegcduljko"
 
 # Frontend URL for redirection
-FRONTEND_URL = "http://localhost:3000"
+FRONTEND_URL = "http://localhost:5173"
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Expire reset token after 1 hour (default is 24 hours)
@@ -333,6 +362,10 @@ AUTHENTICATION_BACKENDS = [
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# MEDIA_ROOT = BASE_DIR / "media"
 
 STATIC_URL = "static/"
 

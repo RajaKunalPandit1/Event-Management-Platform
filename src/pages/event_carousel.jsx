@@ -4,11 +4,11 @@ import axios from "axios";
 
 const getRandomImage = () => {
     const randomImages = [
-        "https://images.unsplash.com/photo-1619973226698-b77a5b5dd14b?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "https://images.unsplash.com/photo-1577733641835-998f7e303679?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "https://images.unsplash.com/photo-1558008258-3256797b43f3?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        "https://images.unsplash.com/photo-1619973226698-b77a5b5dd14b?q=80&w=2071&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1577733641835-998f7e303679?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1558008258-3256797b43f3?q=80&w=1931&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop"
     ];
     return randomImages[Math.floor(Math.random() * randomImages.length)];
 };
@@ -25,13 +25,12 @@ const EventCarousel = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
+                // sorting events in ascending order of date
+                const sortedEvents = response.data.sort((a, b) => new Date(a.date) - new Date(b.date));
 
-                const sortedEvents = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-                // Assign a random image if event.image is missing
                 const updatedEvents = sortedEvents.slice(0, 5).map(event => ({
                     ...event,
-                    image: getRandomImage()
+                    image: event.image ? `http://127.0.0.1:8000${event.image}` : getRandomImage()
                 }));
 
                 setEvents(updatedEvents);
@@ -56,11 +55,13 @@ const EventCarousel = () => {
                                 backgroundPosition: "center",
                                 height: "60vh",
                                 width: "100%",
+                                cursor: "pointer",
                             }}
+                            onClick={() => window.open(`/event_details/${event.id}`, "_blank")}
                         >
-                            <div className="bg-dark bg-opacity-50 p-3 rounded">
+                            <div className="bg-dark bg-opacity-50 p-3 rounded text-white">
                                 <h2>{event.title}</h2>
-                                <p>{event.date} | {event.location}</p>
+                                <p>{event.date.split("T")[0]} | {event.location}</p>
                             </div>
                         </div>
                     </Carousel.Item>
