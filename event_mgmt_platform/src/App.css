@@ -1,0 +1,138 @@
+.fade-in {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
+
+.animated-text {
+  animation: slideUp 1s ease-in-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Make navbar transparent on the home page */
+.navbar-transparent {
+  background-color: transparent !important;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Ensure text is visible on transparent navbar */
+.navbar-transparent .nav-link,
+.navbar-transparent .navbar-brand {
+  color: white !important;
+}
+
+.navbar-transparent {
+  background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+  backdrop-filter: blur(15px); /* Optional: add blur for better look */
+}
+
+/* Apply underline effect when hovering on home page */
+.nav-hover {
+  position: relative;
+  transition: color 0.3s ease-in-out;
+}
+.navbar-transparent .nav-link:hover {
+  color: #ddd !important;
+}
+
+.nav-link {
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background-color: currentColor;
+  transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-hover:hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: white; /* Adjust color if needed */
+  transition: width 0.3s ease-in-out;
+}
+
+.footer-transparent {
+  background-color: transparent !important;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.footer-transparent span {
+  color: white !important;
+}
+/* ---------------------------------------- */
+
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  /* text-align: center; */
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.read-the-docs {
+  color: #888;
+}
