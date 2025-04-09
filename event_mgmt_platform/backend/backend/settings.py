@@ -99,11 +99,10 @@ AUTH_USER_MODEL = 'api.CustomUser'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'event-mgmt-db',
-        'USER': 'rajakunalpandit',
-        'PASSWORD': 'Jaguarftype1',
-        # 'HOST': 'localhost',
-        'HOST': 'eventmgmt-db.cnoq6ia2kp2s.ap-south-1.rds.amazonaws.com',
+        'NAME': 'event_mgmt',
+        'USER': 'EventMgmtDB',
+        'PASSWORD': 'qwerty123456',
+        'HOST': 'database-1.cnoq6ia2kp2s.ap-south-1.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
