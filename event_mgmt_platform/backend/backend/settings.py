@@ -28,8 +28,8 @@ SECRET_KEY = "django-insecure-n6nbp6+7h_^@d5l5r+^@25coeg1ow#cu+11q6p@esy&j+k+*j%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+# ALLOWED_HOSTS = ['52.66.54.28', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -99,16 +99,25 @@ AUTH_USER_MODEL = 'api.CustomUser'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'event_mgmt',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
+        'NAME': 'event-mgmt-db',
+        'USER': 'rajakunalpandit',
+        'PASSWORD': 'Jaguarftype1',
         # 'HOST': 'localhost',
-        'HOST': 'host.docker.internal',
+        'HOST': 'eventmgmt-db.cnoq6ia2kp2s.ap-south-1.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
-
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'event_mgmt',
+#         'USER': 'postgres',
+#         'PASSWORD': '1234',
+#         # 'HOST': 'localhost',
+#         'HOST': 'host.docker.internal',
+#         'PORT': '5432',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
