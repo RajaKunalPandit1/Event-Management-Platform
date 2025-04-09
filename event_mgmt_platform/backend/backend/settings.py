@@ -96,29 +96,28 @@ AUTH_USER_MODEL = 'api.CustomUser'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'event-mgmt-db',
-        'USER': 'rajakunalpandit',
-        'PASSWORD': 'Jaguarftype1',
-        # 'HOST': 'localhost',
-        'HOST': 'eventmgmt-db.cnoq6ia2kp2s.ap-south-1.rds.amazonaws.com',
-        'PORT': '5432',
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'event_mgmt',
-#         'USER': 'postgres',
-#         'PASSWORD': '1234',
+#         'NAME': 'event-mgmt-db',
+#         'USER': 'rajakunalpandit',
+#         'PASSWORD': 'Jaguarftype1',
 #         # 'HOST': 'localhost',
-#         'HOST': 'host.docker.internal',
+#         'HOST': 'eventmgmt-db.cnoq6ia2kp2s.ap-south-1.rds.amazonaws.com',
 #         'PORT': '5432',
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'event_mgmt',
+        'USER': 'postgres',
+        'PASSWORD': '1234',
+        # 'HOST': 'localhost',
+        'HOST': 'host.docker.internal',
+        'PORT': '5432',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
