@@ -81,7 +81,7 @@ const Login = ({ setAuth }) => {
 
         try {
             const response = await axios.post(
-                `http://52.66.219.20:8000/api/login/`,
+                `${BASE_URL}/api/login/`,
                 formData,
                 {
                     headers: { "Content-Type": "application/json" },
