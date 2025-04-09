@@ -85,11 +85,11 @@ WSGI_APPLICATION = "backend.wsgi.application"
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = True  # Temporarily allow all origins (for testing)
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Allow frontend
-    "http://localhost:3000",  # React frontend
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:5173",  # Allow frontend
+#     "http://localhost:3000",  # React frontend
 
-]
+# ]
 
 AUTH_USER_MODEL = 'api.CustomUser'
 
