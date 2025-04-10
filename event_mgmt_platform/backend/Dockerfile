@@ -15,6 +15,7 @@ RUN pip install -r requirements.txt
 
 # Copy project
 COPY . /app/
+RUN python manage.py collectstatic --noinput
 
 # Run migrations and start server
 CMD ["gunicorn", "backend.wsgi:application", "--bind", "0.0.0.0:8000"]
