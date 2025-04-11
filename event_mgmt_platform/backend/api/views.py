@@ -189,6 +189,9 @@ def update_event(request, event_id):
 
     except Event.DoesNotExist:
         return Response({"error": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
+    
+    print(request.data)
+    print(request.FILES)
 
     serializer = EventSerializer(event, data=request.data, partial=True)  # Allows partial updates
 
