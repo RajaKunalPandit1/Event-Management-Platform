@@ -14,7 +14,6 @@ class Event(models.Model):
         related_name="hosted_events",
         default=1
     )
-    
     image = models.ImageField(
         upload_to="event_images/",
         default="event_images/default_event.jpg",
