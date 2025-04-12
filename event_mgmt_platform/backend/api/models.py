@@ -23,7 +23,6 @@ class Event(models.Model):
     reminder_sent = models.BooleanField(default=False)  
     premium_only = models.BooleanField(default=False) 
 
-
     def __str__(self):
         return self.title
 
