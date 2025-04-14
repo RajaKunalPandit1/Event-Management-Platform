@@ -34,6 +34,7 @@ urlpatterns = [
     path("api/event/<int:event_id>/remove-rsvp/", views.delete_rsvp, name="delete-rsvp"),
     path("api/event/<int:event_id>/remove-user-rsvp/<int:user_id>/", views.remove_user_rsvp, name="remove-user-rsvp"),
     path("api/event/<int:event_id>/make-public/", views.make_event_public, name="make_event_public"),
+    path("api/trigger_event_notifications/", views.trigger_event_notifications, name="trigger_event_notifications"),
 ]
 
 # # Serve media files in development

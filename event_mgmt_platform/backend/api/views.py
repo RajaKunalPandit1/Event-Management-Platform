@@ -29,6 +29,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
 from django.contrib.auth.hashers import make_password
 from api.models import CustomUser  # Update with your actual user model path
+from .scheduler import fetch_and_notify_rsvp_users
 
 
 CustomUser = get_user_model()
@@ -436,6 +437,14 @@ def remove_user_rsvp(request, event_id, user_id):
         return Response({"message": "User's RSVP removed successfully"}, status=status.HTTP_204_NO_CONTENT)
     except RSVP.DoesNotExist:
         return Response({"error": "RSVP not found"}, status=status.HTTP_404_NOT_FOUND)
+    
+@api_view(["POST"])
+def trigger_event_notifications(request):
+    try:
+        fetch_and_notify_rsvp_users()
+        return Response({"message": "Reminders sent successfully."}, status=status.HTTP_200_OK)
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
 # =========================================================================
 # @api_view(["PUT"])
