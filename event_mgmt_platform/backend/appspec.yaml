@@ -3,7 +3,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: "REPLACED_BY_CODEPIPELINE"
+        TaskDefinition: taskdef.json 
         LoadBalancerInfo:
           ContainerName: "simple-docker-service-06d0c0bbe761"
           ContainerPort: 8000
