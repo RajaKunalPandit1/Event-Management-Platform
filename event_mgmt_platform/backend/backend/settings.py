@@ -157,25 +157,41 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
+# LOGGING = {
+#     "version": 1,
+#     "disable_existing_loggers": False,
+#     "handlers": {
+#         "file": {
+#             "level": "INFO",
+#             "class": "logging.FileHandler",
+#             "filename": "scheduler.log",
+#         },
+#     },
+#     "loggers": {
+#         "django": {
+#             "handlers": ["file"],
+#             "level": "INFO",
+#             "propagate": True,
+#         },
+#     },
+# }
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
     "handlers": {
-        "file": {
-            "level": "INFO",
-            "class": "logging.FileHandler",
-            "filename": "scheduler.log",
+        "console": {
+            "class": "logging.StreamHandler",
         },
     },
     "loggers": {
         "django": {
-            "handlers": ["file"],
+            "handlers": ["console"],
             "level": "INFO",
             "propagate": True,
         },
     },
 }
-
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"

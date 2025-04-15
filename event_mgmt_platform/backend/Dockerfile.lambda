@@ -1,0 +1,24 @@
+# Use AWS Lambda Python base image
+FROM public.ecr.aws/lambda/python:3.11
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV DJANGO_SETTINGS_MODULE=backend.settings
+
+# Set work directory
+WORKDIR /var/task
+
+# Install dependencies
+COPY requirements.txt .
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+# Copy project files
+COPY . .
+
+# Collect static files if needed
+RUN python manage.py collectstatic --noinput
+
+# Specify Lambda handler
+CMD ["api.scheduler.lambda_handler"]
