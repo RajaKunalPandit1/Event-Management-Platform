@@ -87,7 +87,7 @@ const Home = () => {
       ></div>
       <div className="position-relative text-center">
         <h2 className="animated-text">Welcome to the Home Page</h2>
-        <p className="animated-text">Login to join the Events</p>
+        <p className="animated-text">Login to join the Events.</p>
         <button
         className="btn btn-light mt-3 px-4 py-2 fw-bold"
         onClick={() => navigate("/register")}
