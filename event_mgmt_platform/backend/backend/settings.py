@@ -26,8 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-n6nbp6+7h_^@d5l5r+^@25coeg1ow#cu+11q6p@esy&j+k+*j%"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = False
-DEBUG = True
+DEBUG = False
+# DEBUG = True
 
 # ALLOWED_HOSTS = ['52.66.54.28', 'localhost', '127.0.0.1']
 ALLOWED_HOSTS = ['*']
@@ -241,18 +241,18 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-# AWS_STORAGE_BUCKET_NAME = 'eventmgmteventimages'
-# AWS_S3_REGION_NAME = 'ap-south-1'  
+AWS_STORAGE_BUCKET_NAME = 'eventmgmteventimages'
+AWS_S3_REGION_NAME = 'ap-south-1'  
 
-# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-# AWS_S3_FILE_OVERWRITE = False
-# AWS_DEFAULT_ACL = 'public-read'
-# AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = 'public-read'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
 
-# # Media files (User uploads)
-# MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
+# Media files (User uploads)
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
 
 
 
