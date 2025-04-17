@@ -231,7 +231,8 @@ const ManageEvent = () => {
                             <div className="mb-3">
                                 <Form.Label>Current Event Image</Form.Label>
                                 <br />
-                                <img src={`${BASE_URL}${eventData.image}`} alt="Event" className="img-thumbnail" width="200" />
+                                {/* <img src={`${BASE_URL}${eventData.image}`} alt="Event" className="img-thumbnail" width="200" /> */}
+                                <img src={`${eventData.image}`} alt="Event" className="img-thumbnail" width="200" />
                             </div>
                         )}
 

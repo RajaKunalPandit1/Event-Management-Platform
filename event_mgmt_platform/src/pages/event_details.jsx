@@ -148,7 +148,8 @@ const EventDetails = () => {
                 {/* Image Handling */}
                 <div className="text-center">
                     <img
-                        src={event.image ? `${BASE_URL}${event.image}` : "https://dummyimage.com/800x400/ccc/fff"}
+                        // src={event.image ? `${BASE_URL}${event.image}` : "https://dummyimage.com/800x400/ccc/fff"}
+                        src={event.image ? `${event.image}` : "https://dummyimage.com/800x400/ccc/fff"}
                         alt={event.title}
                         className="img-fluid rounded border shadow"
                         style={{ maxHeight: "400px", objectFit: "cover", width: "100%" }}

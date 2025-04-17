@@ -55,7 +55,8 @@ const EventCarousel = () => {
 
                 const updatedEvents = sortedEvents.slice(0, 5).map(event => ({
                     ...event,
-                    image: event.image ? `${BASE_URL}${event.image}` : getRandomImage()
+                    // image: event.image ? `${BASE_URL}${event.image}` : getRandomImage()
+                    image: event.image ? `${event.image}` : getRandomImage()
                 }));
 
                 setEvents(updatedEvents);

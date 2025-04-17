@@ -169,7 +169,8 @@ const AdminDashboard = () => {
                             <Card className="shadow">
                                 <Card.Img
                                     variant="top"
-                                    src={event.image ? `${BASE_URL}${event.image}` : "https://images.unsplash.com/photo-1535041195258-607127544040?q=80&w=2070&auto=format&fit=crop"}
+                                    // src={event.image ? `${BASE_URL}${event.image}` : "https://images.unsplash.com/photo-1535041195258-607127544040?q=80&w=2070&auto=format&fit=crop"}
+                                    src={event.image ? `${event.image}` : "https://images.unsplash.com/photo-1535041195258-607127544040?q=80&w=2070&auto=format&fit=crop"}
                                     alt={event.title}
                                     style={{ height: "250px", objectFit: "cover" }}
                                     
