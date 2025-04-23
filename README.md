@@ -1,4 +1,4 @@
-# 🌐 Event Management Platform
+# Event Management Platform
 
 A powerful, role-based event management system built with **Django (Backend)** and **React + Vite (Frontend)**, JWT-based authentication with protected routes and scheduled email reminders via AWS Lambda and deployed with a production-grade AWS CI/CD infrastructure.
 
