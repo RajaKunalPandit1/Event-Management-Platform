@@ -139,34 +139,33 @@ Used **JWT (Bearer Token)** authentication:
 
 ### Setup Steps
 
-# 1. Clone the repository
-git clone https://github.com/rajakunalpandit1event-management-platform.git
+1. Clone the repository
+```bash 
+git clone https://github.com/RajaKunalPandit1/Event-Management-Platform.git
 cd event-management-platform
-
-# 2. Backend Setup
+```
+2. Backend Setup
+```bash 
 cd backend/
-docker build -t your-backend .
-docker-compose up
-
-# 3. Frontend Setup
-cd ../frontend/
+docker build -t event-backend .
+docker run -p 8000:8000 event-backend
+```
+3. Frontend Setup
+```bash 
+cd ../src/
 npm install
 npm run dev
+```
 
-# 4. Deploy to AWS
-# Push your changes to GitHub and let AWS CodePipeline handle the rest 💪
-
+4. Deploy to AWS
+```bash 
+# Push your changes to GitHub and let AWS CodePipeline handle the rest 
+```
 # Optional: Add UI screenshots in your docs
 # 📸 Screenshots
 # - UI overview
 # - Event cards
 # - Admin dashboard
-
-
-1. Clone the repository.
-2. Add `.env` files for both frontend and backend.
-3. Run Docker Compose or build individual services.
-4. Access the platform on your local or deployed URL.
 
 ---
 
