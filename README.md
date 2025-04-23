@@ -57,16 +57,116 @@ This is a role-based event management platform where users can RSVP to events, r
 ## 🔐 Password Reset Feature
 
 Users can request a password reset via email. The tokenized link allows secure password update through the frontend.
+Here's how it works:
 
-**Backend Logic** (Django):
+1. The user submits their email via a POST request.
+2. If the email is valid and matches a registered user, the backend:
+   - Encodes the user’s ID and generates a secure token.
+   - Creates a password reset link using these credentials.
+   - Sends the link to the user’s email address.
+3. When the user clicks the link, they're taken to a reset form on the frontend.
+4. They can enter a new password, which is securely validated and saved if the token is still valid.
 
-```python
-@csrf_exempt
-def request_password_reset(request):
-    ...
-    # Generate uid & token
-    uid = urlsafe_base64_encode(force_bytes(user.pk))
-    token = default_token_generator.make_token(user)
-    reset_link = f"{settings.FRONTEND_URL}/reset-password/{uid}/{token}/"
-    # Email sending logic
-    ...
+
+---
+
+## 🏗️ Deployment Architecture
+
+![Architecture Diagram](./architecture-diagram.jpg) <!-- Rename your image to architecture-diagram.jpg in the repo -->
+
+### 🖼️ Frontend Deployment
+
+- Hosted using **AWS S3 + CloudFront**.
+- **CodeBuild** triggered via **GitHub Webhook** on every push.
+- Old artifacts are deleted from the S3 bucket and replaced with new ones.
+- CloudFront automatically reflects the changes.
+
+### 🔧 Backend Deployment
+
+- Two separate AWS **CodePipelines**:
+  - **Pipeline 1**: Triggered on GitHub push → Builds Docker image → Pushes to ECR.
+  - **Pipeline 2**: Triggered on new ECR image tag → Deploys to ECS cluster.
+- ECS Cluster is **monitored using CloudWatch**.
+
+### 🛢️ Database and Monitoring
+
+- **Amazon RDS PostgreSQL** used.
+- Enhanced monitoring enabled via **CloudWatch**.
+- Indexes created on columns for faster filtering.
+- DB instances restored using **snapshots** if required.
+
+---
+
+## 🐳 Docker Integration for Full Stack
+
+This project uses **Docker** for consistent and portable builds:
+
+- **Backend**: Dockerized Django app.
+- **Frontend**: Dockerized React + Vite app.
+- **Lambda (Reminder Scheduler)**: Packaged as a Docker image for AWS Lambda, scheduled via EventBridge.
+
+All Docker images are built and pushed to **AWS ECR** using CodeBuild pipelines, ensuring seamless deployments and version control.
+
+---
+
+## 🔐 Authorization
+
+Used **JWT (Bearer Token)** authentication:
+- Users receive a JWT token on login.
+- All protected routes require a valid token in the header.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React, Vite, Axios, Bootstrap
+- **Backend**: Django, Django REST Framework
+- **Database**: PostgreSQL (AWS RDS)
+- **Authentication**: JWT + Bearer Token
+- **DevOps**: AWS ECS, ECR, CodeBuild, CodePipeline, Lambda, EventBridge, CloudWatch, S3, CloudFront
+- **Notifications**: Django email system (SMTP)
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Docker
+- AWS CLI
+- Node.js & npm
+- Python & pip
+
+### Setup Steps
+
+# 1. Clone the repository
+git clone https://github.com/rajakunalpandit1event-management-platform.git
+cd event-management-platform
+
+# 2. Backend Setup
+cd backend/
+docker build -t your-backend .
+docker-compose up
+
+# 3. Frontend Setup
+cd ../frontend/
+npm install
+npm run dev
+
+# 4. Deploy to AWS
+# Push your changes to GitHub and let AWS CodePipeline handle the rest 💪
+
+# Optional: Add UI screenshots in your docs
+# 📸 Screenshots
+# - UI overview
+# - Event cards
+# - Admin dashboard
+
+
+1. Clone the repository.
+2. Add `.env` files for both frontend and backend.
+3. Run Docker Compose or build individual services.
+4. Access the platform on your local or deployed URL.
+
+---
+
