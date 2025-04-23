@@ -2,7 +2,7 @@
 
 A powerful, role-based event management system built with **Django (Backend)** and **React + Vite (Frontend)**, JWT-based authentication with protected routes and scheduled email reminders via AWS Lambda and deployed with a production-grade AWS CI/CD infrastructure.
 
-🎥 **Demo Video**: [Watch on YouTube](https://www.youtube.com/watch?v=A69P-NmbC1s)
+🎥 **Demo Video**: <a href="https://www.youtube.com/watch?v=A69P-NmbC1s" target="_blank">Watch on YouTube</a>
 ---
 
 ## 🧠 Table of Contents
@@ -77,7 +77,7 @@ Here's how it works:
 
 ---
 
-## 🏗️ Deployment Architecture ([Docs](https://docs.google.com/document/d/1HXNp24zYOn7hO4aGKp01hoGNifjVBUujjyyyUVL73Dw/edit?usp=sharing))
+## 🏗️ Deployment Architecture (<a href="https://docs.google.com/document/d/1HXNp24zYOn7hO4aGKp01hoGNifjVBUujjyyyUVL73Dw/edit?usp=sharing" target="_blank">Docs</a>)
 
 ![Architecture Diagram](event_mgmt_platform/public/architecture.jpg)
 
