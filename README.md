@@ -52,6 +52,10 @@ This is a role-based event management platform where users can RSVP to events, r
   - Lambda containerized and pushed to ECR
   - Triggered daily by EventBridge to check and notify upcoming RSVPs
 
+* Notification via Mail
+
+![notificaition](event_mgmt_platform/public/reminder.jpg)
+
 ---
 
 ## 🔐 Password Reset Feature
@@ -67,12 +71,15 @@ Here's how it works:
 3. When the user clicks the link, they're taken to a reset form on the frontend.
 4. They can enter a new password, which is securely validated and saved if the token is still valid.
 
+* Password Reset request via mail
+
+![pass req](event_mgmt_platform/public/passreset.jpg)
 
 ---
 
 ## 🏗️ Deployment Architecture
 
-![Architecture Diagram](./architecture-diagram.jpg) <!-- Rename your image to architecture-diagram.jpg in the repo -->
+![Architecture Diagram](event_mgmt_platform/public/architecture.jpg)
 
 ### 🖼️ Frontend Deployment
 
@@ -161,11 +168,24 @@ npm run dev
 ```bash 
 # Push your changes to GitHub and let AWS CodePipeline handle the rest 
 ```
-# Optional: Add UI screenshots in your docs
 # 📸 Screenshots
-# - UI overview
-# - Event cards
-# - Admin dashboard
+
+* Home Page
+
+![Home Page](event_mgmt_platform/public/homepage.jpg)
+
+* Dashboard with Integrated Carausel
+  
+![Dashboard](event_mgmt_platform/public/dashboard.jpg)
+
+* Events View of an Admin
+  
+![Admin](event_mgmt_platform/public/events.jpg)
+
+* Update Event
+  
+![Update](event_mgmt_platform/public/makeeventpremium.jpg)
+
 
 ---
 
