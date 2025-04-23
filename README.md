@@ -77,7 +77,7 @@ Here's how it works:
 
 ---
 
-## 🏗️ Deployment Architecture
+## 🏗️ Deployment Architecture ([Docs](https://docs.google.com/document/d/1HXNp24zYOn7hO4aGKp01hoGNifjVBUujjyyyUVL73Dw/edit?usp=sharing))
 
 ![Architecture Diagram](event_mgmt_platform/public/architecture.jpg)
 
